@@ -1,2 +1,2 @@
 # mySite
-My website for documenting/displaying my projects
+My website for documenting/displaying projects
