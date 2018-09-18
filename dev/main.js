@@ -1,47 +1,49 @@
 $(document).ready(function()
 {
-    // console.log("READY");
-    // $(".nav-item").hover(function(event)
-    // {
-    //     $(this).toggleClass("nav-view");
-    // });
-    //
-    // $(".nav-icon").click(function(event)
-    // {
-    //     $(this).parent().toggleClass("nav-hold");
-    // });
-    //
+    console.log("READY");
+
+    $(".nav-side").click(function(event)
+    {
+        let item = $(this).parent();
+
+        if($(this).css("width") == item.css("width"))
+            setWidth(item);
+        else
+            resetWidth(item);
+    });
+
+    $(".open-nav > i").click(function(event)
+    {
+        $(".navigation").toggle();
+    });
+
     $(".nav-arrow").click(function(event)
     {
-        // toggleDropdown($(this).parent());
+        let dropdown = $(this).siblings(".nav-dropdown");
 
-        let dropdown = $(this).siblings(".nav-dropdown")
-
-        let h = dropdown.height();
-        console.log(h);
-        if(h == 0)
-            dropdown.css("height", dropdown[0].scrollHeight);
+        if(dropdown.height() == 0)
+            setHeight(dropdown);
         else
-            dropdown.css("height", 0);
+            resetHeight(dropdown);
     });
-})
+});
 
-// function toggleDropdown(navItem)
-// {
-//     let dropdown = navItem.find(".nav-dropdown");
-//
-//     if(dropdown.children().length > 0)
-//     {
-//         console.log(dropdown.css("height"));
-//         if(dropdown.css("height") == "0px")
-//         {
-//             dropdown.css("height", "auto");
-//             navItem.find(".nav-arrow i").text("arrow_drop_up");
-//         }
-//         else
-//         {
-//             dropdown.css("height", "0px");
-//             navItem.find(".nav-arrow i").text("arrow_drop_down");
-//         }
-//     }
-// }
+function setWidth(element, w)
+{
+    element.css("width", w | element[0].scrollWidth);
+}
+
+function resetWidth(element)
+{
+    element.css("width", "");
+}
+
+function setHeight(element, h)
+{
+    element.css("height", element[0].scrollHeight);
+}
+
+function resetHeight(element)
+{
+    element.css("height", "");
+}
